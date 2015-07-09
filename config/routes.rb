@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :user_calendars
-  resources :events do
+  resources :events, except: [:new, :create, :edit, :update, :show, :index, :destroy] do
     collection do
       post 'embedded_index'
       post 'move_event'

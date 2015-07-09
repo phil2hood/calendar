@@ -9,10 +9,12 @@ class EventsController < ApplicationController
   def embedded_edit
     @event = Event.find(params[:id])
   end
+
   def embedded_new
     @event = Event.new
     @event.user_calendar = current_user.default_calendar
   end
+
   def embedded_update
     tz = ActiveSupport::TimeZone.new(current_user.timezone)
     up_params = event_params
@@ -20,7 +22,6 @@ class EventsController < ApplicationController
     up_params[:end_at] = tz.parse(up_params['end_at']).utc.to_s
     @event = Event.find(params['event_id'])
     @old_day = @event.start_at.to_date
-    Rails.logger.info "params #{up_params}"
     @event.update_attributes(up_params)
     @day = @event.start_at.to_date
     @events = current_user.appointments(@day)
