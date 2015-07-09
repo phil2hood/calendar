@@ -1,0 +1,11 @@
+// Place all the styles related to the UserCalendars controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.calendarLine {
+  margin-bottom: 10px;
+  .calendarEntryKey {
+    width: 30px;
+    height: 15px;
+    display: inline-block;
+  }
+}

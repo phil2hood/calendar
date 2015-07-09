@@ -1,0 +1,3 @@
+$('#day_<%= @day %>').html('<%= escape_javascript( render :partial => 'event_list',
+                                                                      locals: {events: @events} ,
+                                                                     :formats => [:html]) %>');

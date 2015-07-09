@@ -1,0 +1,39 @@
+<% content_for :head do %>
+    <%= javascript_include_tag 'week' %>
+<% end %>
+
+<div class="filters">
+  <p>Week of <%= @day.to_s %></p>
+  <div class="clearAll" style="margin-top: 10px">
+    <a href="<%= weekly_event_sets_path(day: (@day - 7.days)) %>"  class="button buttonMid">Prev</a>
+    <a href="<%= weekly_event_sets_path(day: (@day + 7.days)) %>"  class="button buttonMid" >Next</a>
+  </div>
+  <h3>Calendars</h3>
+  <% current_user.user_calendars.each do |calendar| %>
+      <%= check_box_tag "calendar_#{calendar.id}", "calendar_#{calendar.id}", true, {class: 'calendarSelection'} %>
+      <span class='calendarPalette'><%= calendar.name %></span>
+  <% end %>
+  <div class="clearAll" style="margin-top: 10px">
+    <a href="<%= user_calendars_path %>"  class="button buttonMid"  id="adjustCalendarsButton" >Edit Calendars</a>
+  </div>
+  <div class="clearAll">
+    <a href="/"  class="button buttonMid"  id="addEventButton" data-url="<%= embedded_new_events_path %>" >New Event</a>
+  </div>
+</div>
+<div class="weekBox">
+  <div class="hourColumn">
+    <% (0..23).each do |hour| %>
+        <div class="hourCaption hourBox"><span class='hourLabel'><%= '%02d' % hour %>:00</span></div>
+    <% end %>
+  </div>
+  <% (@first_day..@last_day).each do |day| %>
+      <div class="weekday" id="day_<%= day %>" data-day="<%= day %>"
+           data-move-url="<%= move_event_events_path %>"
+           data-populate-url="<%= embedded_index_events_path(date: day) %>">
+        <% (0..23).each do |hour| %>
+            <div class="hourBox"></div>
+        <% end %>
+      </div>
+  <% end %>
+</div>
+<div id="eventDialog"></div>

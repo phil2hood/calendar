@@ -1,0 +1,62 @@
+$TOP_BUTTON_COLOR:#7e77bb;
+$TOP_MID1_COLOR:#77eeff;
+$TOP_MID2_COLOR:#70ddee;
+$TOP_BOTTOM_COLOR:#ddeeff;
+.button {
+  text-decoration: none !important;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    background: $TOP_BUTTON_COLOR; /* Old browsers */
+    background: -moz-linear-gradient(top, $TOP_BUTTON_COLOR 0%, $TOP_MID1_COLOR 50%, $TOP_MID2_COLOR 51%, $TOP_BOTTOM_COLOR 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$TOP_BUTTON_COLOR), color-stop(50%,$TOP_MID1_COLOR), color-stop(51%, $TOP_MID2_COLOR), color-stop(100%, $TOP_BOTTOM_COLOR)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, $TOP_BUTTON_COLOR 0%,$TOP_MID1_COLOR 50%,$TOP_MID2_COLOR 51%,$TOP_BOTTOM_COLOR 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, $TOP_BUTTON_COLOR 0%,$TOP_MID1_COLOR 50%,$TOP_MID2_COLOR 51%,$TOP_BOTTOM_COLOR 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, $TOP_BUTTON_COLOR,$TOP_MID1_COLOR 50%,$TOP_MID2_COLOR 51%,$TOP_BOTTOM_COLOR 100%); /* IE10+ */
+    background: linear-gradient(to bottom, $TOP_BUTTON_COLOR 0%,$TOP_MID1_COLOR 50%,$TOP_MID2_COLOR 51%,$TOP_BOTTOM_COLOR 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr=$TOP_BUTTON_COLOR, endColorstr=$TOP_BOTTOM_COLOR,GradientType=0 );
+}
+.buttonMid {
+    height : 23px;
+    line-height: 23px;
+    padding: 2px 4px ;
+    font-size: 10px;
+}
+.buttonSmall {
+    height : 17px;
+    line-height: 17px;
+    padding: 0 2px ;
+    font-size: 9px;
+ }
+.clearAll {
+    clear:both;
+}
+.formLine {
+    width:100%;
+}
+.thirdWidth {
+    width:33%;
+    float:left;
+}
+.twoThirds {
+    width:66%;
+    float:left;
+}
+.header {
+    background-color: #eeffff;
+    height:20px;
+    .action {
+        height:15px;
+        line-height: 15px;
+        padding:0;
+        margin: 3px 5px 2px 0;
+    }
+}
+.rightSide {
+    float:right;
+}
+.leftSide {
+  float:left;
+}

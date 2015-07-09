@@ -1,0 +1,157 @@
+var PHR = PHR || {};
+PHR.Events = function ($) {
+    var weekInitialized = false;
+    var scrollInitialized = false;
+    var date_picker_options = {
+        dateFormat: 'MM-dd-yy',
+        timeFormat: 'HH:mm:ss',
+        buttonText: 'choose time',
+        showOn: 'button',
+        step: 15
+    };
+
+    var weekdayInit = function () {
+        if (!weekInitialized) {
+            console.info("Initializing Week.")
+            $(".weekday").each(function () {
+                var pop_url = $(this).data('populate-url');
+                $(this).droppable({
+                    drop: function (event, ui) {
+                        var dayHeight = $(event.target).find('div.dayPage').height();
+                        var newHour = ui.position.top * 24/dayHeight;
+                        var newDate = $(this).data('day');
+                        var movedEvent = $(ui.draggable).data('id');
+                        var moveUrl = $(this).data('move-url');
+                        // alert("event " + moved_event + " dropped at "  + new_date + "  " + new_hour);
+                        $.ajax({
+                            url: moveUrl,
+                            dataType: 'script',
+                            type: 'POST',
+                            data: {
+                                target_date: newDate,
+                                target_hour: newHour,
+                                event_id: movedEvent
+                            },
+                            success: function (xhr, status, err) {
+                                setupDay();
+                            },
+                            error: function (xhr, status, err) {
+                                console.error(pop_url, status, err.toString());
+                            }
+                        });
+                    }
+                });
+                $.ajax({
+                    url: pop_url,
+                    dataType: 'script',
+                    type: 'POST',
+                    data: {target_date: $(this).data('day')},
+                    success: function (xhr, status, err) {
+                        setupDay();
+                    },
+                    error: function (xhr, status, err) {
+                        console.error(pop_url, status, err.toString());
+                    }
+                });
+                weekInitialized = true;
+            });
+            $('#eventDialog').dialog({
+                autoOpen: false,
+                height: 350,
+                width: 650,
+                modal: true
+            });
+            $('#addEventButton').click(function(e){
+                e.preventDefault();
+                var addUrl = $(this).data('url');
+                $.ajax({
+                    url: addUrl,
+                    dataType: 'script',
+                    type: 'POST',
+                   // data: {target_date: $(this).data('day')},
+                    success: function (xhr, status, err) {
+                        setupDay();
+                    },
+                    error: function (xhr, status, err) {
+                        console.error(addUrl, status, err.toString());
+                    }
+                });
+            });
+        } else {
+            console.info("Week Already initialized")
+        }
+    };
+    var setupDay = function () {
+        $('.event-entry').draggable();
+        $('.eventEditButton').click(function(e){
+            e.preventDefault();
+            var editUrl = $(this).data('edit-url');
+            $.ajax({
+                url: editUrl,
+                dataType: 'script',
+                type: 'POST',
+                error: function (xhr, status, err) {
+                    console.error(editUrl, status, err.toString());
+                }
+            });
+        });
+        if (!scrollInitialized) {
+            $('.weekBox').scrollTop($('div.dayPage').height() / 3);
+            scrollInitialized = true;
+        }
+    };
+    var dialogInit = function(){
+        $('.timeSelection').datetimepicker(date_picker_options);
+        $('#processEventButton').click(function(e){
+            dialogUrl=$(this).data('url');
+            e.preventDefault();
+            $.ajax({
+                url: dialogUrl,
+                dataType: 'script',
+                type: 'POST',
+                data: $('#event_data').serialize(),
+                    /*title: $('#title').val(),
+                    {description: $('#description').val(),
+                    notes: $('#notes').val(),
+                    start_at: $('#start_at').val(),
+                    end_at: $('#end_at').val(),
+                    calendar_id: $('#calendar').val()
+                },*/
+                success: function (xhr, status, err) {
+                    setupDay();
+                },
+                error: function (xhr, status, err) {
+                    console.error(dialogUrl, status, err.toString());
+                }
+            });
+            $('#eventDialog').dialog('close')
+        });
+        $('#cancelEventButton').click(function(){
+            $('#eventDialog').dialog('close')
+        });
+        $('#editEventSet').click(function(e){
+            e.preventDefault();
+            var editUrl = $(this).data('url');
+            $.ajax({
+                url: editUrl,
+                dataType: 'script',
+                type: 'POST',
+                error: function (xhr, status, err) {
+                    console.error(editUrl, status, err.toString());
+                }
+            });
+        });
+    };
+    return {
+        weekdayInit: weekdayInit,
+        dialogInit: dialogInit
+    }
+}(jQuery);
+
+$(document).ready(function () {
+    PHR.Events.weekdayInit()
+});
+// Turbolinks makes this second callback necessary
+$(document).on('page:load', function () {
+    PHR.Events.weekdayInit()
+});

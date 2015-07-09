@@ -1,0 +1,4 @@
+$('#eventDialog').html('<%= escape_javascript( render :partial => 'event_set_edit',
+                                                                  :formats => [:html]) %>');
+$('#eventDialog').dialog('open')
+PHR.Events.dialogInit();

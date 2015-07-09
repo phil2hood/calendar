@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= ENV['APP_PREFIX'] %> Calendar</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= yield :head %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
+    <%= render :partial => 'shared/head' %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    <%= yield %>
+    <%= render :partial => 'shared/foot' %>
+  </body>
+</html>

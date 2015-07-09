@@ -1,0 +1,10 @@
+<h2 class="'leftSide twoThirds">New Event</h2>
+<a href="/" class="button buttonMid rightSide"
+   id="editEventSet"
+   data-url="<%= embedded_new_events_path %>">New Event</a>
+
+<%= render :partial => 'event_set_form' %>
+<div class="clearAll">
+  <a href="/" , class="button buttonMid" , id="processEventButton" data-url="<%= embedded_create_event_sets_path %>">create</a>
+  <a href="/" , class="button buttonMid" , id="cancelEventButton">cancel</a>
+</div>

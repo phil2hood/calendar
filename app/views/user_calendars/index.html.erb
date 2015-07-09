@@ -1,0 +1,9 @@
+<h3>Visible Calendars</h3>
+<div>
+  <%= render partial: 'calendar_entry', collection: @calendars %>
+</div>
+
+<div class="clearAll" style="margin-top: 10px">
+  <a href="<%= new_user_calendar_path %>"  class="button buttonMid" >New Calendar</a>
+  <a href="<%= weekly_event_sets_path%>"  class="button buttonMid" >Cancel</a>
+</div>

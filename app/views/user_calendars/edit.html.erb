@@ -1,0 +1,32 @@
+<%= form_for @calendar do |f| %>
+    <% if f.object.errors.count > 0 %>
+        <fieldset>
+          <legend>Errors Encountered</legend>
+          <% f.object.errors.full_messages.each do |message| %>
+              <%= message %>
+              <br/>
+          <% end %>
+        </fieldset>
+        <br />
+    <% end %>
+
+    <div class="formLine clearAll">
+      <div class='thirdWidth'><%= label 'Name', 'Name', class: 'third-width' %></div>
+      <div class='twoThirds'><%= f.text_field :name , class: 'third-width' %></div>
+    </div>
+    <div class="formLine clearAll">
+      <div class='thirdWidth'><%= label 'Visibility', 'Visibility', class: 'third-width' %></div>
+      <div class='twoThirds'><%= f.select :visibility, options_for_select(UserCalendar::VISIBILITY_LEVELS, @calendar.visibility) %></div>
+    </div>
+    <div class="formLine clearAll">
+      <div class='thirdWidth'><%= label 'Description', 'Description', class: 'third-width' %></div>
+      <div class='twoThirds'><%= f.text_area :description, class: 'third-width' %></div>
+    </div>
+    <div class="formLine clearAll">
+      <div class='thirdWidth'><%= label 'Color', 'Color', class: 'third-width' %></div>
+      <div class='twoThirds'><%= f.color_field :color , class: 'third-width' %></div>
+    </div>
+    <div class="formLine clearAll">
+    <%= f.submit @calendar.new_record? ? 'Create' : 'Save' %>
+    </div>
+<% end %>

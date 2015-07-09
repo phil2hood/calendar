@@ -1,0 +1,13 @@
+<fieldset class="dayBox">
+  <legend><%= @day.to_s %></legend>
+  <div class="dayPage">
+    <% (0..23).each do |hour| %>
+        <div class="hourBox"></div>
+    <% end %>
+    <div class="event-list">
+      <%= render partial: 'event', collection: events %>
+    </div>
+  </div>
+  <div className='event_dialog' id='event_dialog'>
+  </div>
+</fieldset>
