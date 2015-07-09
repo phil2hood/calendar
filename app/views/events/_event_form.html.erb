@@ -1,35 +1,40 @@
 <%= form_for @event, html: {id: 'event_data'} do |f| %>
-    <%= Time.use_zone(current_user.timezone) do %>
-        <%= hidden_field_tag 'event_id', @event.id %>
-        <div class="formLine clearAll">
-          <div class='thirdWidth'><%= label 'Title', 'Title', class: 'third-width' %></div>
-          <div class='twoThirds'><%= f.text_field :title, class: 'third-width' %></div>
-        </div>
-        <div class="formLine clearAll">
-          <div class='thirdWidth'><%= label 'Description', 'Description', class: 'third-width' %></div>
-          <div class='twoThirds'><%= f.text_field :description, class: 'third-width' %></div>
-        </div>
-        <div class="formLine clearAll">
-          <div class='thirdWidth'><%= label 'Notes', 'Notes', class: 'third-width' %></div>
-          <div class='twoThirds'><%= f.text_field :notes, class: 'third-width' %></div>
-        </div>
+
+    <%= hidden_field_tag 'event_id', @event.id %>
+    <div class="formLine clearAll">
+      <div class='thirdWidth'><%= label 'Title', 'Title', class: 'third-width' %></div>
+      <div class='twoThirds'><%= f.text_field :title, class: 'third-width' %></div>
+    </div>
+    <div class="formLine clearAll">
+      <div class='thirdWidth'><%= label 'Description', 'Description', class: 'third-width' %></div>
+      <div class='twoThirds'><%= f.text_field :description, class: 'third-width' %></div>
+    </div>
+    <div class="formLine clearAll">
+      <div class='thirdWidth'><%= label 'Notes', 'Notes', class: 'third-width' %></div>
+      <div class='twoThirds'><%= f.text_field :notes, class: 'third-width' %></div>
+    </div>
+    <% Time.use_zone(current_user.timezone) do %>
         <div class="formLine clearAll">
           <div class='thirdWidth'><%= label 'Start', 'Start' %></div>
-          <div class='twoThirds'><%= f.datetime_field :start_at, class: 'timeSelection third-width', :placeholder => 'mm/dd/yy' %></div>
+          <div class='twoThirds'><%= f.datetime_field :start_at, class: 'timeSelection third-width' %>
+          </div>
         </div>
         <div class="formLine clearAll">
           <div class='thirdWidth'><%= label 'End', 'End', class: 'third-width' %></div>
-          <div class='twoThirds'><%= f.datetime_field :end_at, class: 'timeSelection third-width', :placeholder => 'mm/dd/yy' %></div>
-        </div>
-        <div class="formLine clearAll">
-          <div class='thirdWidth'><%= label 'Calendar', 'Calendar', class: 'third-width' %></div>
-          <div class='twoThirds'>
-            <%= f.select :user_calendar_id,
-                         options_from_collection_for_select(current_user.user_calendars,
-                                                            'id',
-                                                            'name',
-                                                            @event.user_calendar_id) %>
+          <div class='twoThirds'><%= f.datetime_field :end_at, class: 'timeSelection third-width' %>
           </div>
         </div>
     <% end %>
+    <div class="formLine clearAll">
+      <div class='thirdWidth'><%= label 'Calendar', 'Calendar', class: 'third-width' %></div>
+      <div class='twoThirds'>
+        <%= f.select :user_calendar_id,
+                     options_from_collection_for_select(current_user.user_calendars,
+                                                        'id',
+                                                        'name',
+                                                        @event.user_calendar_id) %>
+      </div>
+    </div>
+
+
 <% end %>

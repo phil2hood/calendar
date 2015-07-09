@@ -1,6 +1,7 @@
 <h2>Edit Event</h2>
 <% if @event.event_set_id %>
-    <a href="/" class="button buttonMid rightSide"
+    <a href="/"
+       class="button buttonMid rightSide"
        id="editEventSet"
        data-url="<%= embedded_edit_event_set_path(@event.event_set_id) %>">Edit Event Set</a>
 <% end %>

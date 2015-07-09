@@ -1,4 +1,8 @@
+<% Rails.logger.info render :partial => 'event_form',
+                            :formats => [:html] %>
+<% Rails.logger.info render :partial => 'event_edit',
+                            :formats => [:html] %>
 $('#eventDialog').html('<%= escape_javascript( render :partial => 'event_edit',
-                                                                  :formats => [:html]) %>');
+                                                      :formats => [:html]) %>');
 $('#eventDialog').dialog('open')
 PHR.Events.dialogInit();
