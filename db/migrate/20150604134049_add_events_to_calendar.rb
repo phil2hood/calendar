@@ -1,7 +1,7 @@
 class AddEventsToCalendar < ActiveRecord::Migration
   def change
-    change_table :calendar_accesses do |t|
-      t.string :access_level
+    change_table :events do |t|
+      t.string :user_calendar_id
     end
   end
 end
