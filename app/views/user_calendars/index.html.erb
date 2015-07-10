@@ -1,9 +1,27 @@
+<% content_for :head do %>
+    <%= javascript_include_tag 'calendar' %>
+<% end %>
 <h3>Visible Calendars</h3>
+<div id="calendarImportDialog" class="minimized">
+  <%= form_tag import_user_calendars_path, multipart: true do %>
+      <% label_tag '.ics File', '.ics File' %>
+      <%= hidden_field_tag 'import_calendar_id', 0 %>
+      <%= file_field_tag 'import_file' %>
+      <%= submit_tag 'Import' %>
+  <% end %>
+</div>
+<div id="calendarExportDialog" class="minimized">
+  <%= form_tag export_user_calendars_path do %>
+      <%= hidden_field_tag 'export_calendar_id', 0 %>
+      <%= file_field_tag 'export_file' %>
+      <%= submit_tag 'Export' %>
+  <% end %>
+</div>
 <div>
   <%= render partial: 'calendar_entry', collection: @calendars %>
 </div>
 
 <div class="clearAll" style="margin-top: 10px">
-  <a href="<%= new_user_calendar_path %>"  class="button buttonMid" >New Calendar</a>
-  <a href="<%= weekly_event_sets_path%>"  class="button buttonMid" >Cancel</a>
+  <a href="<%= new_user_calendar_path %>" class="button buttonMid">New Calendar</a>
+  <a href="<%= weekly_event_sets_path %>" class="button buttonMid">Cancel</a>
 </div>

@@ -2,5 +2,7 @@
   <div class='calendarEntryKey' style="background-color:<%= calendar_entry.color %>;"></div>
   <%= link_to calendar_entry.name, edit_user_calendar_path(calendar_entry) %>
   <%= calendar_entry.visibility %>
+  <%= link_to 'import', '/', {class: 'calendarImport button buttonMid', data: {calendarId: calendar_entry.id}} %>
+  <%= link_to 'export', '/', {class: 'calendarExport button buttonMid', data: {calendarId: calendar_entry.id}} %>
   <%= link_to 'delete', user_calendar_path(calendar_entry), :method =>:delete, confirm: 'Are you sure?', class: 'button buttonMid' %>
 </div>

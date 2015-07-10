@@ -18,9 +18,9 @@ class UserCalendarsController < ApplicationController
   def destroy
     target_cal = UserCalendar.find(params['id'])
     cal_access = current_user.calendar_accesses.where(user_calendar_id: target_cal.id).first
-    if cal_access.access_level == 'FULL'  # You can only delete you own calendars
+    if cal_access.access_level == 'FULL' # You can only delete you own calendars
       target_cal.destroy
-    else                     # otherwise we just remove your access
+    else # otherwise we just remove your access
       cal_access.destroy
     end
     @calendars = current_user.user_calendars
@@ -40,9 +40,20 @@ class UserCalendarsController < ApplicationController
     @calendar = UserCalendar.find(params['id'])
   end
 
-    private
+  def import
+    @calendar = UserCalendar.find(params['import_calendar_id'])
+    in_cal = params[:import_file]
+    @calendar.import_events(in_cal.tempfile)
+    redirect '/'
+  end
 
-    def calendar_params
-      params.require(:user_calendar).permit(:name, :description, :color, :visibility)
-    end
+  def export
+
+  end
+
+  private
+
+  def calendar_params
+    params.require(:user_calendar).permit(:name, :description, :color, :visibility)
+  end
 end

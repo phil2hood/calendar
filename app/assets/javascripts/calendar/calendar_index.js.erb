@@ -1,0 +1,38 @@
+var PHR = PHR || {};
+PHR.Calendar = function ($) {
+    var calendarInit = function () {
+        $('#calendarImportDialog').dialog({
+            autoOpen: false,
+            height: 250,
+            width: 450,
+            modal: true
+        });
+        $('#calendarExportDialog').dialog({
+            autoOpen: false,
+            height: 250,
+            width: 450,
+            modal: true
+        });
+        $('.calendarImport').click(function(e){
+            e.preventDefault();
+            $('#import_calendar_id').val( $(this).data('calendarid'));
+            $('#calendarImportDialog').dialog('open');
+        });
+        $('.calendarExport').click(function(e){
+            e.preventDefault();
+            $('#export_calendar_id').val( $(this).data('calendarid'));
+            $('#calendarExportDialog').dialog('open');
+        });
+    };
+    return {
+        calendarInit: calendarInit
+    }
+}(jQuery);
+
+$(document).ready(function () {
+    PHR.Calendar.calendarInit()
+});
+// Turbolinks makes this second callback necessary
+$(document).on('page:load', function () {
+    PHR.Calendar().calendarInit()
+});
