@@ -11,7 +11,7 @@
   <h3>Calendars</h3>
   <% current_user.user_calendars.each do |calendar| %>
       <%= check_box_tag "calendar_#{calendar.id}", "calendar_#{calendar.id}", true, {class: 'calendarSelection'} %>
-      <span class='calendarPalette'><%= calendar.name %></span>
+      <span class='calendarPalette'><%= calendar.name %></span><br/>
   <% end %>
   <div class="clearAll" style="margin-top: 10px">
     <a href="<%= user_calendars_path %>"  class="button buttonMid"  id="adjustCalendarsButton" >Edit Calendars</a>
