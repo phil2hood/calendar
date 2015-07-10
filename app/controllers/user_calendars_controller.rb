@@ -44,7 +44,7 @@ class UserCalendarsController < ApplicationController
     @calendar = UserCalendar.find(params['import_calendar_id'])
     in_cal = params[:import_file]
     @calendar.import_events(in_cal.tempfile)
-    redirect '/'
+    redirect_to '/'
   end
 
   def export
