@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  devise_for :users
   resources :user_calendars do
     collection do
       post 'import'
@@ -29,6 +28,7 @@ Rails.application.routes.draw do
       patch 'embedded_update'
     end
   end
+  devise_for :users, :controllers => { :registrations => "registrations" }
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
