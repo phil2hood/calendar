@@ -17,7 +17,7 @@
 
     <div class="registrationField">
       <%= f.label :default_calendar %><br/>
-      <%= f.select :default_calendar, resource.user_calendars.collect{|c| [c.name, c.id]}, autofocus: true %>
+      <%= f.select :default_calendar_id, resource.user_calendars.collect{|c| [c.name, c.id]}, autofocus: true %>
     </div>
 
     <div class="registrationField">
