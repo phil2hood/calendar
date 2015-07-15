@@ -1,7 +1,4 @@
-$TOP_BUTTON_COLOR:#7e77bb;
-$TOP_MID1_COLOR:#77eeff;
-$TOP_MID2_COLOR:#70ddee;
-$TOP_BOTTOM_COLOR:#ddeeff;
+@import 'variables';
 .button {
   text-decoration: none !important;
     -webkit-border-radius: 3px;
@@ -47,6 +44,7 @@ $TOP_BOTTOM_COLOR:#ddeeff;
 .header {
     background-color: #eeffff;
     height:20px;
+    width:$PAGE_WIDTH;
     .action {
         height:15px;
         line-height: 15px;

@@ -1,14 +1,10 @@
-$DAY_WIDTH:<%= ENV['DAY_WIDTH'] %>px;
-$DAY_WIDTH_PADDED:<%= ENV['DAY_WIDTH'].to_i + 21  %>px;
-$WEEK_WIDTH:<%= (ENV['DAY_WIDTH'].to_i + 21) * 7 + 70 %>px;
-$DAY_HEIGHT:<%= ENV['DAY_HEIGHT'] %>px; 
-$HOUR_HEIGHT:<%= ENV['DAY_HEIGHT'].to_i/24 - 1 %>px;
+@import 'variables';
 // Place all the styles related to the Events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .filters {
     float: left;
-    width:150px;
+    width:$FILTER_WIDTH;
 }
 .weekday {
     float: left;

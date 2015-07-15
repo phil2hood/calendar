@@ -1,0 +1,11 @@
+$DAY_WIDTH:<%= ENV['DAY_WIDTH'] %>px;
+$DAY_WIDTH_PADDED:<%= ENV['DAY_WIDTH'].to_i + 21  %>px;
+$WEEK_WIDTH:<%= (ENV['DAY_WIDTH'].to_i + 21) * 7 + 70 %>px;
+$FILTER_WIDTH:<%= ENV['FILTER_WIDTH'] %>px;
+$PAGE_WIDTH:<%= ENV['FILTER_WIDTH'].to_i +  (ENV['DAY_WIDTH'].to_i + 21) * 7 + 70 %>px;
+$DAY_HEIGHT:<%= ENV['DAY_HEIGHT'] %>px;
+$HOUR_HEIGHT:<%= ENV['DAY_HEIGHT'].to_i/24 - 1 %>px;
+$TOP_BUTTON_COLOR:#7e77bb;
+$TOP_MID1_COLOR:#77eeff;
+$TOP_MID2_COLOR:#70ddee;
+$TOP_BOTTOM_COLOR:#ddeeff;
