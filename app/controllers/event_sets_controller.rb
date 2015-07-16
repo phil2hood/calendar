@@ -11,7 +11,6 @@ class EventSetsController < ApplicationController
     up_params = event_set_params
     up_params[:start_at] = tz.parse(up_params['start_at']).utc.to_s
     @event_set = EventSet.create(up_params)
-    redirect_to :weekly_event_sets_path
   end
 
   def embedded_edit
@@ -24,7 +23,7 @@ class EventSetsController < ApplicationController
     up_params[:start_at] = tz.parse(up_params['start_at']).utc.to_s
     @event_set = EventSet.find(params[:id])
     @event_set.update_attributes(up_params)
-    redirect_to :weekly
+    render :embedded_create
   end
 
   def weekly

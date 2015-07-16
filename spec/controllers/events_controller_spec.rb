@@ -60,7 +60,20 @@ describe EventsController do
   end
 
   describe 'post embedded_update' do
-
+    it 'updates the event' do
+      t = Time.now
+      params = {title: 'Title',
+                description: 'description',
+                notes: 'notes',
+                start_at: t.to_s,
+                end_at: (t + 30.minutes).to_s}
+      e = double('Event',start_at: t.to_s )
+      expect(Event).to receive(:find) {e}
+      expect(e).to receive(:update_attributes) {true}
+      expect(@user).to receive(:appointments).twice {[e]}
+      post :embedded_update, id: 1,  event: params, :format => 'js'
+      expect(assigns(:events)).to eq [e]
+    end
   end
 
 end

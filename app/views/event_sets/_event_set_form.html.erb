@@ -1,6 +1,6 @@
 <%= form_for @event_set, html: {id: 'event_data'} do |f| %>
-    <%= Time.use_zone(current_user.timezone) do %>
-        <%= f.hidden_field 'event_set_id', @event_set.id %>
+    <% Time.use_zone(current_user.timezone) do %>
+        <%= f.hidden_field 'event_set_id', value: @event_set.id %>
         <div class="formLine clearAll">
           <div class='thirdWidth'><%= label 'Title', 'Title', class: 'third-width' %></div>
           <div class='twoThirds'><%= f.text_field :title, class: 'third-width' %></div>
