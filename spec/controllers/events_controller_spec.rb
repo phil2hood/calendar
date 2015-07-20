@@ -55,6 +55,18 @@ describe EventsController do
       expect(Event).to receive(:create) {e}
       expect(@user).to receive(:appointments) {[e]}
       post :embedded_create, event: params, :format => 'js'
+    end
+    it 'assigns @events' do
+      t = Time.now
+      params = {title: 'Title',
+                description: 'description',
+                notes: 'notes',
+                start_at: t.to_s,
+                end_at: (t + 30.minutes).to_s}
+      e = double('Event',start_at: t.to_s )
+      expect(Event).to receive(:create) {e}
+      expect(@user).to receive(:appointments) {[e]}
+      post :embedded_create, event: params, :format => 'js'
       expect(assigns(:events)).to eq [e]
     end
   end
@@ -74,6 +86,22 @@ describe EventsController do
       post :embedded_update, id: 1,  event: params, :format => 'js'
       expect(assigns(:events)).to eq [e]
     end
+    it 'assigns @events and @old_day_events' do
+      t = Time.now
+      params = {title: 'Title',
+                description: 'description',
+                notes: 'notes',
+                start_at: t.to_s,
+                end_at: (t + 30.minutes).to_s}
+      e = double('Event',start_at: t.to_s )
+      expect(Event).to receive(:find) {e}
+      expect(e).to receive(:update_attributes) {true}
+      expect(@user).to receive(:appointments).twice {[e]}
+      post :embedded_update, id: 1,  event: params, :format => 'js'
+      expect(assigns(:events)).to eq [e]
+      expect(assigns(:old_day_events)).to eq [e]
+    end
+
   end
 
 end

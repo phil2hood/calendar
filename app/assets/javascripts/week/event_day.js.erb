@@ -11,7 +11,7 @@ PHR.Events = function ($) {
     };
 
     var weekdayInit = function () {
-        console.info("Initializing Week.")
+        console.info("Initializing Week.");
         $(".weekday").each(function () {
             var pop_url = $(this).data('populate-url');
             $(this).droppable({
@@ -99,7 +99,7 @@ PHR.Events = function ($) {
     var dialogInit = function () {
         $('.timeSelection').datetimepicker(date_picker_options);
         $('#processEventButton').click(function (e) {
-            dialogUrl = $(this).data('url');
+            var dialogUrl = $(this).data('url');
             e.preventDefault();
             $.ajax({
                 url: dialogUrl,
