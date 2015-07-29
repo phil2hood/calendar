@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe User do
-  describe 'appointment' do
+  describe 'appointments' do
     it 'gets events starting in the day' do
       e = double('Event')
       u = User.new
@@ -17,6 +17,7 @@ describe User do
                   start_at: Time.now,
                   duration: 30,
                   period: 7,
+                  instances:2,
                   events:ev_rel,
                   title: 'ES Title',
                   description: 'ES Description',

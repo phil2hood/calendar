@@ -3,6 +3,8 @@ class EventSet < ActiveRecord::Base
   has_many :events
   validates :title, :duration, :instances, presence:true
 
+  # TODO need to support monthly and yearly events
+
   def start_at
     read_attribute(:start_at) || Time.now
   end
