@@ -15,7 +15,9 @@
         </div>
         <div class="formLine clearAll">
           <div class='thirdWidth'><%= label 'Start', 'Start' %></div>
-          <div class='twoThirds'><%= f.datetime_field :start_at, class: 'timeSelection', :placeholder => 'mm/dd/yy' %></div>
+          <div class='twoThirds'><%= f.datetime_field :start_at,
+                                                      value: @event_set.start_at.strftime('%Y/%m/%d %H:%M'),
+                                                      class: 'timeSelection', :placeholder => 'mm/dd/yy' %></div>
         </div>
         <div class="formLine clearAll">
           <div class='thirdWidth'><%= label 'Duration(Minutes)', 'Duration(Minutes)', class: 'third-width' %></div>

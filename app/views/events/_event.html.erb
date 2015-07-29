@@ -2,7 +2,7 @@
 <% top = event.start_at.in_time_zone(current_user.timezone).seconds_since_midnight/86400 * ENV['DAY_HEIGHT'].to_i %>
 <div  class='event-entry'
       style='top:<%= top %>px;height: <%= ENV['DAY_HEIGHT'].to_i/24 * duration/3600%>px' data-id="<%= event.id %>"
-      title="<%= "From #{event.start_at.in_time_zone(current_user.timezone).strftime('%H:%M')} to #{event.end_at.in_time_zone(current_user.timezone).strftime('%H:%M')} " %>">
+      title="<%= "#{event.title}, From #{event.start_at.in_time_zone(current_user.timezone).strftime('%H:%M')} to #{event.end_at.in_time_zone(current_user.timezone).strftime('%H:%M')} " %>">
   <p class="button buttonSmall editButton"><a class='eventEditButton' data-edit-url='<%= embedded_edit_event_path(event) %>' href="/">e</a> </p>
   <p class='event-title'>  <%= event.title %> </p>
 </div>

@@ -18,7 +18,7 @@ class User < ActiveRecord::Base
       sa = day.to_datetime.change(hour:es.start_at.hour, minute:es.start_at.min)
       ea = sa + es.duration.minutes
       estimated_instance = (day.to_date - es.start_at.to_date).to_i / (es.period.to_i)
-      Rails.logger.info "instances #{es.instances} estimated #{estimated_instance}"
+      #Rails.logger.info "instances #{es.instances} estimated #{estimated_instance}"
       if (estimated_instance <= es.instances &&
           es.events.where(event_set_instance: estimated_instance).count == 0)
         es.events.create(title: es.title,

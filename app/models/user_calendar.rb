@@ -13,7 +13,7 @@ class UserCalendar < ActiveRecord::Base
     cal.events.each do |event|
       if event.rrule.count > 0
         rule = event.rrule.first
-        Rails.logger.info "Rule #{rule.to_json}"
+        #Rails.logger.info "Rule #{rule.to_json}"
         interval_const = rule.interval.nil? ? 1 : rule.interval.to_i
         interval = case rule.frequency # TODO fix yearly and monthy after event set supports
                      when "MONTHLY"
@@ -25,7 +25,7 @@ class UserCalendar < ActiveRecord::Base
                      else
                        interval_const
                    end
-        Rails.logger.info "Event name #{event.summary}, start #{event.dtstart} end #{event.dtend}"
+        #Rails.logger.info "Event name #{event.summary}, start #{event.dtstart} end #{event.dtend}"
         if event.dtend.nil?
           duration = 15
         else

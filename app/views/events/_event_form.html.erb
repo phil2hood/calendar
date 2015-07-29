@@ -16,12 +16,16 @@
     <% Time.use_zone(current_user.timezone) do %>
         <div class="formLine clearAll">
           <div class='thirdWidth'><%= label 'Start', 'Start' %></div>
-          <div class='twoThirds'><%= f.datetime_field :start_at, class: 'timeSelection third-width' %>
+          <div class='twoThirds'><%= f.datetime_field :start_at,
+                                                      value: @event.start_at.strftime('%Y/%m/%d %H:%M'),
+                                                      class: 'timeSelection third-width' %>
           </div>
         </div>
         <div class="formLine clearAll">
           <div class='thirdWidth'><%= label 'End', 'End', class: 'third-width' %></div>
-          <div class='twoThirds'><%= f.datetime_field :end_at, class: 'timeSelection third-width' %>
+          <div class='twoThirds'><%= f.datetime_field :end_at,
+                                                      value: @event.end_at.strftime('%Y/%m/%d %H:%M'),
+                                                      class: 'timeSelection third-width' %>
           </div>
         </div>
     <% end %>
