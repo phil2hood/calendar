@@ -3,7 +3,7 @@
 <% end %>
 
 <div class="filters">
-  <p>Week of <%= @day.to_s %></p>
+  <p class="filtertext">Week of <%= @day.to_s %></p>
   <div class="clearAll" style="margin-top: 10px">
     <a href="<%= weekly_event_sets_path(day: (@day - 7.days)) %>"  class="button buttonMid">Prev</a>
     <a href="<%= weekly_event_sets_path(day: (@day + 7.days)) %>"  class="button buttonMid" >Next</a>
