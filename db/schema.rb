@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710182857) do
+ActiveRecord::Schema.define(version: 20150731122301) do
 
   create_table "calendar_accesses", force: :cascade do |t|
     t.integer  "user_calendar_id", limit: 4
@@ -28,10 +28,12 @@ ActiveRecord::Schema.define(version: 20150710182857) do
     t.integer  "instances",        limit: 4
     t.integer  "duration",         limit: 4
     t.integer  "period",           limit: 4
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.datetime "start_at"
     t.integer  "user_calendar_id", limit: 4
+    t.string   "interval_units",   limit: 255,   default: "DAYS"
+    t.boolean  "has_end",          limit: 1,     default: false
   end
 
   create_table "events", force: :cascade do |t|

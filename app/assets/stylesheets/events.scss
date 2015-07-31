@@ -7,6 +7,8 @@
     width:$FILTER_WIDTH;
 }
 .weekday {
+    display: inline-block;
+    font-size: 11px;
     float: left;
     width: $DAY_WIDTH_PADDED;
 }
@@ -41,8 +43,10 @@
 }
 
 .hourCaption {
+    float: left;
     width: 50px;
     background-color: lightcyan;
+    font-size: 11px;
 }
 .hourBox {
     padding: 0;
